@@ -2,14 +2,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-include 'class-zoho-api.php';
-
 class ZohoBooks extends ZohoApi {
 
     private static $baseurl = "https://www.zohoapis.com/books/v3/";
 
     public static function create_invoice($data = []) {
-        $organization_id = get_option('wsa_zoho_book_organization', '');
+        $organization_id = get_option('zoho_api_book_organization', '');
         $response = self::get_token();
         if( $response["error"]==1 ) return ["error"=>"not token"];
         $access_token = $response["access_token"];
@@ -32,7 +30,7 @@ class ZohoBooks extends ZohoApi {
     }
 
     public static function create_customer ( $data ) {
-        $organization_id = get_option('wsa_zoho_book_organization', '');
+        $organization_id = get_option('zoho_api_book_organization', '');
         $response = self::get_token();
         if( $response["error"]==1 ) return ["error"=>"not token"];
         $access_token = $response["access_token"];
@@ -55,7 +53,7 @@ class ZohoBooks extends ZohoApi {
     }
 
     public static function create_payment ( $data ) {
-        $organization_id = get_option('wsa_zoho_book_organization', '');
+        $organization_id = get_option('zoho_api_book_organization', '');
         $response = self::get_token();
         if( $response["error"]==1 ) return ["error"=>"not token"];
         $access_token = $response["access_token"];
@@ -78,7 +76,7 @@ class ZohoBooks extends ZohoApi {
     }
 
     public static function mark_as ( $mark, $invoice_id ) {
-        $organization_id = get_option('wsa_zoho_book_organization', '');
+        $organization_id = get_option('zoho_api_book_organization', '');
         $response = self::get_token();
         if( $response["error"]==1 ) return ["error"=>"not token"];
         $access_token = $response["access_token"];
@@ -112,7 +110,7 @@ class ZohoBooks extends ZohoApi {
     }
 
     public static function get_single_resource($resource, $id = null, $singular_resource = '', $page = 1 ) {
-        $organization_id = get_option('wsa_zoho_book_organization', '');
+        $organization_id = get_option('zoho_api_book_organization', '');
         $response = self::get_token();
         if( $response["error"]==1 ) return [];
         $access_token = $response["access_token"];
